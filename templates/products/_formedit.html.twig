@@ -1,0 +1,43 @@
+{{ form_start(form) }}
+<div class="form-group row">
+    {{ form_label(form.categorie, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.categorie, {'attr': {'class': 'form-control'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.categorie) }}</small>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.name, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.name) }}</small>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.image2, '', {'label_attr': {'class': 'col-form-label col-sm-3 custom-file'}}) }}
+    {{ form_errors(form.image2) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.image2, {'attr': {'class': 'form-control form-control-file'}}) }}
+        <span class="custom-file-control"></span>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.price, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.price) }}</small>
+    </div>
+</div>
+<div class="form-check">
+    {{ form_widget(form.meat, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_label(form.meat, '', {'label_attr': {'class': 'form-check-label'}}) }}
+    {{ form_errors(form.meat) }}
+</div>
+<div class="form-check">
+    {{ form_widget(form.available, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_label(form.available, '', {'label_attr': {'class': 'form-check-label'}}) }}
+    {{ form_errors(form.available) }}
+</div>
+<button class="btn btn-lg btn-primary float-right">{{ button_label|default('Ajouter') }}</button>
+<div class="clearfix"></div>
+{{ form_end(form) }}

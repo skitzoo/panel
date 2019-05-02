@@ -1,0 +1,27 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Ajouter un produit</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Ajouter un produit
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_GetAllProducts', {'page': 1}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                        </div>
+
+                        <div class="card-body p-0 pl-3 pr-3 pt-3">
+
+                            {{ include('products/_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

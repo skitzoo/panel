@@ -1,0 +1,101 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Liste des réservations</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Liste des réservations ({{ bookings|length }})
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th class="text-center">N° commande</th>
+                                        <th>Client</th>
+                                        <th>Horaire</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if bookings is not empty %}
+                                        {% for booking in bookings %}
+                                            <tr>
+                                                <td class="text-center">{{ booking.ord.id }}</td>
+                                                <td>{{ booking.customer.lastname }} {{ booking.customer.firstname }}</td>
+                                                <td>{{ booking.scheduleAt }}</td>
+                                                <td><a href="{{ path('Booking_Edit', {'id' : booking.id}) }}"><i class="fa fa-edit"></i> Editer</a></td>
+                                                <td><a class="delete" data-id="{{ booking.id }}" data-type="booking" href="#"><i class="fa fa-trash-alt"></i> Supprimer</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td class="text-center" colspan="8">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if pagination.totalPages > 0 %}
+                                <ul class="justify-content-center pagination">
+                                    {% if pagination.page == 1 %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="#">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="{{ path('Booking_List', {'page': pagination.page-1}) }}">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in 1..pagination.totalPages %}
+                                        {% if i == pagination.page %}
+                                            <li class="disabled page-item">
+                                                <a class="page-link" href="#">{{ i }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ path('Booking_List', {'page': i}) }}">{{ i }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if pagination.totalPages == pagination.page %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="#">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="{{ path('Booking_List', {'page': pagination.page+1}) }}">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

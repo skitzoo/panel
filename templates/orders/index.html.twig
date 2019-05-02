@@ -1,0 +1,88 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Liste des commandes</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Liste des commandes ({{ orders|length }})
+                        </div>
+
+                        <div class="card-body">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav_item">
+                                    <a aria-controls="En cours de commande" class="{{ status == "En cours de commande" ? 'active' }} nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'En cours de commande'}) }}">En cours de commande ({{ orders_progress|length }})</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a aria-controls="En attente de paiement" class="{{ status == "En attente de paiement" ? 'active' }} nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'En attente de paiement'}) }}">En attente de paiement ({{ orders_wait|length }})</a>
+                                </li>
+
+                                <li class="nav_item">
+                                    <a aria-controls="Commandes en préparation" class="{{ status == "Commande en préparation" ? 'active' }} nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'Commande en préparation'}) }}">Commandes en préparation ({{ orders_prepare|length }})</a>
+                                </li>
+
+                                <li class="nav_item">
+                                    <a aria-controls="Commandes terminées" class="{{ status == "Commande terminée" ? 'active' }} nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'Commande terminée'}) }}">Commandes terminées ({{ orders_finish|length }})</a>
+                                </li>
+
+                                <li class="nav_item">
+                                    <a aria-controls="Commandes annulées" class="{{ status == "Commande annulée" ? 'active' }} nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'Commande annulée'}) }}">Commandes annulées ({{ orders_cancel|length }})</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="waiting" role="tabpanel">
+                                    <div class="table-responsive-sm">
+                                        <table class="table">
+                                            <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th class="text-sm-center">ID Commande</th>
+                                                <th class="text-sm-center">ID Borne</th>
+                                                <th class="text-sm-center">Horaire retrait</th>
+                                                <th class="text-sm-left">Articles</th>
+                                                <th class="text-sm-left">Total</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="Admin_OrdersList">
+                                            {% for order in t %}
+                                                <tr style="{% if order.borneId == 5 %}{% if order.type == false %}background:#EDEDED;{% else %}background:rgba(237,108,58,0.83);{% endif %}{% endif %}">
+                                                    <td class="text-sm-center">{% if order.borneId == 0 %}Internet-{{ order.id }}{% elseif order.borneId != 5 %}Borne-{{ order.id }}{% else %}{{ order.type == false ? "Commande Caisse N°#{order.id} (#{order.typevalue})" : "Commande Uber (#{order.typevalue})" }}{% endif %}</td>
+                                                    <td class="text-sm-center">{{ order.borneId != 0 ? order.borneId : "-" }}</td>
+                                                    <td class="text-sm-center">{{ (order.borneId == 0 and order.bookingInfos != null) ? order.bookingInfos.scheduleAt : "-" }}</td>
+                                                    <td class="text-sm-left">{{ order.totalItems }}</td>
+                                                    <td class="text-sm-left">{{ order.orderTotal|number_format(2, '.', ',') }}€</td>
+                                                    <td><a href="{{ path('Admin_GetOrderPerId', {'id': order.id}) }}"><i class="fa fa-eye"></i> Voir</a></td>
+                                                    <td>{% if status == "En attente de paiement" %}<a class="btn {% if order.borneId != 5 %}btn-outline-success{% else %}btn-outline-primary text-primary{% endif %}" href="{{ path('Admin_SetOrderPay', {'id': order.id}) }}" style="{% if order.borneId == 5 %}color:#FFF;{% endif %}"><i class="fa fa-check"></i> {% if order.borneId == 5 %}Envoyer en cuisine{% else %}Commande payée{% endif %}</a>{% endif %}</td>
+                                                    <td>{% if status == "Commande en préparation" %}<a class="btn btn-success OrderFinish" data-borne_id="{{ order.borneId }}" data-order_id="{{ order.id }}"><i class="fa fa-check"></i> Terminer la commande</a>{% endif %}</td>
+                                                    <td>{% if status == "En attente de paiement" %}<a class="btn btn-outline-danger" href="{{ path('Admin_SetOrderCancel', {'id': order.id}) }}"><i class="fa fa-times"></i> Annuler</a>{% endif %}</td>
+                                                    <td>{% if status == "En attente de paiement" or status == "Commande en préparation" %}<a class="btn Print" data-order_id="{{ order.id }}"><i class="fa fa-print"></i> Imprimer ticket</a>{% endif %}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td class="text-center" colspan="9">Aucune commande en cours</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

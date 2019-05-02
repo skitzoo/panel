@@ -1,0 +1,47 @@
+<header class="app-header navbar">
+    <button class="d-lg-none mr-auto navbar-toggler sidebar-toggler" data-toggle="sidebar-show" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="{{ path('Admin_Home') }}">
+        Administration
+    </a>
+    <button class="d-md-down-none navbar-toggler sidebar-toggler" data-toggle="sidebar-lg-show" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="d-md-down-none nav navbar-nav">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <!--<li class="nav-item px-3">
+            <a class="nav-link" href="#">Panel</a>
+        </li>-->
+        {% endif %}
+    </ul>
+    <ul class="ml-auto nav navbar-nav">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <li class="d-md-down-none nav-item">
+            <a class="nav-link" href="#">
+                <i class="cui-bell"></i>
+                <span class="badge badge-danger badge-pill">0</span>
+            </a>
+        </li>
+        <li class="dropdown nav-item">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link" data-toggle="dropdown" href="#" role="button">
+                <img alt class="img-avatar" src="https://img0-placeit-net.s3-accelerate.amazonaws.com/uploads/stage/stage_image/16548/large_thumb_stage.jpg">
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Mon compte</strong>
+                </div>
+                <a class="dropdown-item" href="{{ path('logout') }}">
+                    <i class="fa fa-lock"></i> Déconnexion
+                </a>
+            </div>
+        </li>
+        {% endif %}
+    </ul>
+    <button class="aside-menu-toggler d-md-down-none navbar-toggler" data-toggle="aside-menu-lg-show" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <button class="aside-menu-toggler d-lg-none navbar-toggler" data-toggle="aside-menu-show" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</header>

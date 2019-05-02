@@ -1,0 +1,72 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Consulter un utilisateur</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Détails de l'utilisateur {{ user.username }}
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_EditUserPerId', {'id': user.id}) }}"><i class="fa fa-edit"></i> Editer</a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ user.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nom de compte</th>
+                                        <td>{{ user.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adresse Mail</th>
+                                        <td>{{ user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Rôles</th>
+                                        <td>
+                                            {% for role in user.roles %}
+                                                {{ role }}<br />
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Actif</th>
+                                        <td>{{ user.isActive ? 'Oui' : 'Non' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Bloqué</th>
+                                        <td>{{ user.isBlocked ? 'Oui' : 'Non' }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="btn-group-lg float-md-right">
+                                <a class="btn btn-info btn-lg" href="{{ path('Admin_GetAllUsers', {'page' : 1}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                                {% if app.user.username != user.username %}
+                                    <a class="btn btn-outline-danger btn-lg" href="#" title="Supprimer cet utilisateur"><i class="fa fa-trash-alt"></i> Supprimer cet utilisateur</a>
+                                {% else %}
+                                    <a class="btn btn-outline-dark btn-lg" href="#" title="Vous ne pouvez pas supprimer votre compte"><i class="fa fa-lock"></i> Verrouillé</a>
+                                {% endif %}
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            {% if app.user.username != user.username %}
+                                <a class="btn btn-lg btn-outline-info" href="{{ path('Admin_Home') }}/?_switch_user={{ user.username }}">Se connecter en tant que {{ user.username }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

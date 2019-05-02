@@ -1,0 +1,108 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Liste des utilisateurs</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Liste des utilisateurs ({{ users|length }})
+                            <a class="btn btn-lg btn-outline-info float-md-right" href="{{ path('Admin_AddUser') }}" title="Ajouter un utilisateur"><i class="fa fa-plus"></i> Ajouter un utilisateur</a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th>#</th>
+                                        <th>Nom de compte</th>
+                                        <th>Adresse Mail</th>
+                                        <th>Actif</th>
+                                        <th>Bloqué</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if users is not empty %}
+                                        {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.id }}</td>
+                                                <td>{{ user.username | capitalize }}</td>
+                                                <td>{{ user.email }}</td>
+                                                <td>{{ user.isActive ? 'Oui' : 'Non' }}</td>
+                                                <td>{{ user.isBlocked ? 'Oui' : 'Non' }}</td>
+                                                <td><a href="{{ path('Admin_GetUserPerId', {'id': user.id}) }}"><i class="fa fa-eye"></i> Voir</a></td>
+                                                <td><a href="{{ path('Admin_EditUserPerId', {'id': user.id}) }}"><i class="fa fa-edit"></i> Editer</a></td>
+                                                <td>{% if app.user.username != user.username %}<a class="delete" data-id="{{ user.id }}" data-type="user" href="#"><i class="fa fa-trash-alt"></i> Supprimer</a>{% else %}<a href="#" title="Vous ne pouvez pas supprimer votre compte"><i class="fa fa-lock"></i> Verrouillé</a>{% endif %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td class="text-center" colspan="8">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if pagination.totalPages > 0 %}
+                                <ul class="justify-content-center pagination">
+                                    {% if pagination.page == 1 %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="#">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="{{ path('Admin_GetAllUsers', {'page': pagination.page-1}) }}">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in 1..pagination.totalPages %}
+                                        {% if i == pagination.page %}
+                                            <li class="disabled page-item">
+                                                <a class="page-link" href="#">{{ i }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ path('Admin_GetAllUsers', {'page': i}) }}">{{ i }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if pagination.totalPages == pagination.page %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="#">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="{{ path('Admin_GetAllUsers', {'page': pagination.page+1}) }}">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

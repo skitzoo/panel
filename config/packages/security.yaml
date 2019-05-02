@@ -1,0 +1,43 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+    providers:
+        user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            form_login:
+                login_path: login
+                check_path: login
+                use_forward: true
+                use_referer: true
+                default_target_path: /
+                remember_me: true
+                require_previous_session: false
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
+                path:     /
+                domain: ~
+                name:      REMEMBERME
+                remember_me_parameter: _remember_me
+                #always_remember_me: true
+            anonymous: ~
+            pattern: ^/
+            user_checker: app.user_checker
+            provider: user_provider
+            logout:
+                path: /logout
+                target: /login
+                invalidate_session: true
+    access_control:
+        - { path: ^/login$, allow_if: "!is_authenticated()" }
+    role_hierarchy:
+        ROLE_DEV: ROLE_ADMIN
+        ROLE_ADMIN: [ROLE_HOTE, ROLE_ALLOWED_TO_SWITCH]

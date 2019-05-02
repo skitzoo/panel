@@ -1,0 +1,24 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="bg-light card-header">
+                    Editer la commande #FM-{{ result.id }}
+                    <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_GetAllOrders', {'status': order.statusOrder}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                </div>
+
+                <div class="card-body">
+                    {% if result.statusOrder == "En cours de commande" %}
+                        <div class="alert alert-info">
+                            Le client n'a pas encore terminé sa commande
+                        </div>
+                    {% else %}
+                        {{ include('orders/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

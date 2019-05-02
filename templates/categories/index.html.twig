@@ -1,0 +1,107 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Liste des catégories</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Liste des catégories ({{ categories|length }})
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_AddCategory') }}"><i class="fa fa-plus"></i> Ajouter une catégorie</a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th></th>
+                                        <th>#</th>
+                                        <th>Nom</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if categories is not empty %}
+                                        {% for category in categories %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ path('Admin_AscendCategory', {'id': category.id}) }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                                    <a href="{{ path('Admin_DescendCategory', {'id': category.id}) }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                                </td>
+                                                <td>{{ category.id }}</td>
+                                                <td>{{ category.name }}</td>
+                                                <td><a href="{{ path('Admin_GetCategoryPerId', {'id': category.id}) }}"><i class="fa fa-eye"></i> Voir</a></td>
+                                                <td><a href="{{ path('Admin_EditCategoryPerId', {'id': category.id}) }}"><i class="fa fa-edit"></i> Editer</a></td>
+                                                <td>{% if is_granted('ROLE_ADMIN') %}<a class="delete" data-id="{{ category.id }}" data-type="category" href="#"><i class="fa fa-trash-alt"></i> Supprimer</a>{% else %} <a href="#" title="Vous n'êtes pas autorisé à supprimer une catégorie"><i class="fa fa-lock"></i> Verrouillé</a>{% endif %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td class="text-center" colspan="6">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if pagination.totalPages > 0 %}
+                                <ul class="justify-content-center pagination">
+                                    {% if pagination.page == 1 %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="#">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="{{ path('Admin_GetAllCategories', {'page': pagination.page-1}) }}">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in 1..pagination.totalPages %}
+                                        {% if i == pagination.page %}
+                                            <li class="disabled page-item">
+                                                <a class="page-link" href="#">{{ i }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ path('Admin_GetAllCategories', {'page': i}) }}">{{ i }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if pagination.totalPages == pagination.page %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="#">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="{{ path('Admin_GetAllCategories', {'page': pagination.page+1}) }}">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

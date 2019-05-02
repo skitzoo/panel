@@ -1,0 +1,190 @@
+{{ form_start(form) }}
+<div class="form-group row">
+    {{ form_label(form.categorie, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.categorie, {'attr': {'class': 'form-control ProductCreateName'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.categorie) }}</small>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.name, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.name) }}</small>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.image2, '', {'label_attr': {'class': 'col-form-label col-sm-3 custom-file'}}) }}
+    {{ form_errors(form.image2) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.image2, {'attr': {'class': 'form-control form-control-file'}}) }}
+        <span class="custom-file-control"></span>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.price, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.price) }}</small>
+    </div>
+</div>
+<div class="form-group row">
+    {{ form_label(form.type, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+    <div class="col-sm-9">
+        {{ form_widget(form.type, {'attr': {'class': 'form-control ProductCreateType'}}) }}
+        <small class="form-text text-muted">{{ form_errors(form.type) }}</small>
+    </div>
+</div>
+<div class="form-check ShowBaking" style="display:none;">
+    {{ form_widget(form.meat, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_label(form.meat, '', {'label_attr': {'class': 'form-check-label'}}) }}
+    {{ form_errors(form.meat) }}
+</div>
+<div class="form-check">
+    {{ form_widget(form.available, {'attr': {'class': 'form-check-input'}}) }}
+    {{ form_label(form.available, '', {'label_attr': {'class': 'form-check-label'}}) }}
+    {{ form_errors(form.available) }}
+</div>
+<hr />
+<div class="ProductCreate_Base" style="display:none;">
+    <h4 style="background-color: #42a5f5 !important;color: #fff;padding: 15px;font-size: 1.3em;margin-left: -15px;margin-right: -15px;">Choisir les ingrédients de base du produit</h4>
+    <div class="form-group row">
+        {{ form_label(form.baseall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall2, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall2, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall3, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall3, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall4, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall4, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall5, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall5, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall6, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall6, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall7, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall7, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall8, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall8, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall9, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall9, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.baseall10, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.baseall10, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted"></small>
+        </div>
+    </div>
+</div>
+<div class="ProductCreate_Default" style="display:none;">
+    <h4 style="background-color: #42a5f5 !important;color: #fff;padding: 15px;font-size: 1.3em;margin-left: -15px;margin-right: -15px;">Choisir les ingrédients par défaut</h4>
+    <div class="form-group row bread">
+        {{ form_label(form.breadall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.breadall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row meat1" style="display:none;">
+        {{ form_label(form.meatall1, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.meatall1, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row meat2" style="display:none;">
+        {{ form_label(form.meatall2, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.meatall2, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row meat3" style="display:none;">
+        {{ form_label(form.meatall3, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.meatall3, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row meat4" style="display:none;">
+        {{ form_label(form.meatall4, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.meatall4, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.cuissonall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.cuissonall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.condimentall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.condimentall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.sauceall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.sauceall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{ form_label(form.supplementall, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+        <div class="col-sm-9">
+            {{ form_widget(form.supplementall, {'attr': {'class': 'form-control'}}) }}
+            <small class="form-text text-muted">Laisser vide si vous ne souhaitez pas le définir</small>
+        </div>
+    </div>
+</div>
+<button class="btn btn-lg btn-primary float-right" id="addProduct">{{ button_label|default('Ajouter') }}</button>
+<div class="clearfix"></div>
+{{ form_end(form) }}

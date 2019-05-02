@@ -1,0 +1,68 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Editer un utilisateur</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Editer un utilisateur
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_GetAllUsers', {'page' : 1}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                        </div>
+
+                        <div class="card-body">
+                            {{ form_start(form) }}
+                            <div class="form-group row">
+                                {{ form_label(form.username, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                                    <small class="form-text text-muted">{{ form_errors(form.username) }}</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.plainPassword, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                                    <small class="form-text text-muted">{{ form_errors(form.plainPassword) }}</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.email, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                                    <small class="form-text text-muted">{{ form_errors(form.email) }}</small>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{ form_label(form.roles, '', {'label_attr': {'class': 'col-form-label col-sm-3'}}) }}
+                                <div class="col-sm-9">
+                                    {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
+                                    <small class="form-text text-muted">{{ form_errors(form.roles) }}</small>
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                {{ form_widget(form.isActive, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(form.isActive, '', {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.isActive) }}
+                            </div>
+                            <div class="form-check">
+                                {{ form_widget(form.isBlocked, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(form.isBlocked, '', {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.isBlocked) }}
+                            </div>
+                            <button class="btn btn-lg btn-primary float-right">Mettre à jour</button>
+                            <div class="clearfix"></div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

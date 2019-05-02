@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block title %}
+            {% if title is defined %}{{ title }}{% else %}Title{% endif %} | Panel
+        {% endblock %}
+    </title>
+    {{ encore_entry_link_tags('css/bootstrap') }}
+    {{ encore_entry_link_tags('css/bootstrap-datepicker') }}
+    {{ encore_entry_link_tags('css/fontawesome') }}
+    {{ encore_entry_link_tags('css/coreui') }}
+    {{ encore_entry_link_tags('css/style') }}
+</head>
+<body class="app aside-menu-fixed header-fixed sidebar-fixed sidebar-lg-show">
+<div class="twig_vars" data-borne="{{ app.request.attributes.get('borne') }}" data-current_route="{{ app.request.attributes.get('_route') }}"></div>
+<div class="fade in modal" data-backdrop="static" id="confirmModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-confirm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="icon">
+                    <i class="fa"></i>
+                </div>
+                <h4 class="modal-title"></h4>
+                <button aria-hidden="true" class="close" data-dismiss="modal" type="button">x</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-center"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="border btn btn-block btn-lg btn-success" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ModalBg" style="display:none;min-height: 100%;z-index: 999999999999999;position: fixed;background: #000;width: 100%;opacity: 0.7;"></div>
+<div class="ModalBox" style="width: 100%;min-height: 100%;position: fixed;z-index: 9999999999;display:none;align-items: center;justify-content: center;">
+    <div  class="ModalContent flex-column" style="background: #fff;min-height:400px;min-width:40%;max-height:40%;position:relative;display:block;">
+        <div class="" style="top:0;right:10px;position:absolute;"><a href="#" class="CloseModal">Fermer</a> </div>
+        <h3 class="AddProductData">Ajout d'un produit</h3>
+        <div>
+            <b>Pain</b>
+            <select class="ProductAddPain"></select>
+        </div>
+        <div>
+            <b>Sauce</b>
+            <select class="ProductAddSauce"></select>
+        </div>
+        <div>
+            <b>Accompagnement</b>
+            <select class="ProductAddAccompagnement"></select>
+        </div>
+        <div class="ProductAddCuissonDiv">
+            <b>Cuisson</b>
+            <select class="ProductAddCuisson"></select>
+        </div>
+        <div>
+            <a href="#" class="ProductAddBtnValid btn btn-primary">Ajouter mon produit</a>
+        </div>
+    </div>
+</div>
+{% include 'navbar.html.twig' %}
+{% include 'sidebar.html.twig' %}
+
+<main class="main">
+    {% block flash %}
+        {% for flash_message in app.session.flashbag.get('success') %}
+            <div class="alert alert-success container" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('info') %}
+            <div class="alert alert-info container" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('warning') %}
+            <div class="alert alert-warning container" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('danger') %}
+            <div class="alert alert-danger container" role="alert">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+    {% endblock %}
+    <div class="loading"></div>
+    {% block body %}{% endblock %}
+</main>
+{{ encore_entry_script_tags('js/app') }}
+{{ encore_entry_script_tags('js/fontawesome') }}
+{{ encore_entry_script_tags('js/bootstrap-datepicker') }}
+{{ encore_entry_script_tags('js/coreui') }}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,13 @@
+body *
+{
+	visibility: hidden;
+}
+.Global
+{
+	display: none;
+	visibility: hidden;
+}
+#ticket, #ticket *
+{
+	visibility: visible;
+}

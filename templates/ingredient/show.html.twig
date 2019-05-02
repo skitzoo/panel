@@ -1,0 +1,75 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Consulter un ingrédient</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Détails de l'ingrédient {{ all_ingredient.name }}
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('all_ingredient_edit', {'id': all_ingredient.id}) }}"><i class="fa fa-edit"></i> Editer</a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-left col-3">
+                                    <img alt="" class="align-self-center img-fluid mr-3" src="{{ all_ingredient.picture is not null ? "/assets/uploads/images/#{ingredient.picture}" : "/assets/img/default.jpeg" }}">
+                                </div>
+                                <div class="media-body">
+                                    <div class="table-responsive-sm">
+                                        <table class="table">
+                                            <tbody>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <td>{{ all_ingredient.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Prix</th>
+                                                <td>{{ all_ingredient.price|number_format(2, '.', ',') }}€</td>
+                                            </tr>
+                                            <tr>
+                                                <th>En Stock</th>
+                                                <td>{{ all_ingredient.available ? 'Oui' : 'Non' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Type</th>
+                                                <td>
+                                                    {{ all_ingredient.type == 0 ? "Ingrédient de base" }}
+                                                    {{ all_ingredient.type == 1 ? "Viande" }}
+                                                    {{ all_ingredient.type == 2 ? "Pain" }}
+                                                    {{ all_ingredient.type == 3 ? "Sauce" }}
+                                                    {{ all_ingredient.type == 4 ? "Cuisson" }}
+                                                    {{ all_ingredient.type == 5 ? "Supplément" }}
+                                                    {{ all_ingredient.type == 6 ? "Condiment" }}
+                                                    {{ all_ingredient.type == 7 ? "Boisson" }}
+                                                    {{ all_ingredient.type == 8 ? "Accompagnement" }}
+                                                    {{ all_ingredient.type == 9 ? "Plat" }}
+                                                    {{ all_ingredient.type == 10 ? "Dessert" }}
+                                                    {{ all_ingredient.type == 11 ? "Jouet" }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ordre</th>
+                                                <td>{{ all_ingredient.ordre }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="btn-group-lg float-sm-right">
+                                        <a class="btn btn-info btn-lg" href="{{ path('all_ingredient_index') }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                                        <a class="btn btn-danger btn-lg" href="{{ path('all_ingredient_delete', {'id': all_ingredient.id}) }}"><i class="fa fa-trash-alt"></i> Supprimer cet ingrédient</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

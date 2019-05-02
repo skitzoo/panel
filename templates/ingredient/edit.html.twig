@@ -1,0 +1,26 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Editer un ingrédient</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Editer l'ingrédient {{ all_ingredient.Name }}
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('all_ingredient_index') }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                        </div>
+
+                        <div class="card-body">
+                            {{ include('ingredient/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

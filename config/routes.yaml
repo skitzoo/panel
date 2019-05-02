@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+logout:
+  path: /logout
+  controller: App\Controller\SecurityController::logout
+
+login:
+  path: /login
+  controller: App\Controller\SecurityController::login
+  requirements:
+    _locale: en|fr

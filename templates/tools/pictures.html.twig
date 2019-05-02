@@ -1,0 +1,54 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="bg-light card-header">
+                    Gestionnaire d'images
+                </div>
+
+                <div class="card-body">
+                    {{ directory_pictures|length }} {{ directory_pictures|length > 1 ? "images trouvées dans le dossier du projet." : "image trouvée dans le dossier du projet." }}<br>
+
+                    {% set images_products = 0 %}
+                    {% for line in products_pictures %}
+                        {% if line.image is not null %}
+                            {% set images_products = images_products + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set unused = directory_pictures|length - images_products %}
+                    {#{{ unused }} {{ unused > 1 ? "images ne sont pas utilisées dans le projet" : "image n'est oas utilisé dans le projet" }}<br>#}
+                    --------------------------------------------------------------------------------<br>
+                    {{ images_products }} {{ images_products > 1 ? "images sont utilisées" : "image est utilisé" }} pour les produits<br>
+                    --------------------------------------------------------------------------------<br>
+                    {% set images_categories = 0 %}
+                    {% for line in categories_pictures %}
+                        {% if line.image is not null %}
+                            {% set images_categories = images_categories + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set unused = directory_pictures|length - images_categories %}
+                    {{ images_categories }} {{ images_categories > 1 ? "images sont utilisées" : "image est utilisé" }} pour les catégories<br>
+                    --------------------------------------------------------------------------------<br>
+                    {% set images_ingredients = 0 %}
+                    {% for line in ingredients_pictures %}
+                        {% if line.picture is not null %}
+                            {% set images_ingredients = images_ingredients + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set unused = directory_pictures|length - images_products %}
+                    {{ images_ingredients }} {{ images_ingredients > 1 ? "images sont utilisées" : "image est utilisé" }} pour les ingrédients<br>
+                    --------------------------------------------------------------------------------<br>
+                    {{ images_products + images_categories + images_ingredients }} sont utilisées au total<br>
+                    {{ directory_pictures|length - (images_products + images_categories + images_ingredients) }} images ne sont pas utilisées.
+                    <div class="alert alert-info mt-2">
+                        <div class="alert-heading"><h2>INFORMATION</h2></div>
+                        <hr>
+                        <strong>Cette page est en cours de développement !</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

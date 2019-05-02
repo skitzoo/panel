@@ -1,0 +1,46 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="bg-light card-header">
+                    Détails de la catégorie {{ category.name }}
+                    <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_EditCategoryPerId', {'id': category.id}) }}"><i class="fa fa-edit"></i> Editer</a>
+                </div>
+
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-left col-3">
+                            <img alt="" class="align-self-center img-fluid mr-3" src="{{ category.image is not null ? "/assets/uploads/images/#{category.image}" : "/assets/img/default.jpeg" }}">
+                        </div>
+                        <div class="media-body">
+                            <div class="table-responsive-sm">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{ category.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ordre</th>
+                                        <td>{{ category.ordre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Verrouillé</th>
+                                        <td>{{ category.locked ? 'Oui' : 'Non' }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="btn-group-lg float-sm-right">
+                                <a class="btn btn-info btn-lg" href="{{ path('Admin_GetAllCategories', {'page': 1}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                                <a class="btn btn-danger btn-lg" href="#"><i class="fa fa-trash-alt"></i> Supprimer cette catégorie</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

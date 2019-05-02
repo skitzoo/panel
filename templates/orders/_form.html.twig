@@ -1,0 +1,9 @@
+{{ form_start(form) }}
+<div class="form-group">
+    {{ form_label(form.statusOrder) }}
+    {{ form_errors(form.statusOrder) }}
+    {{ form_widget(form.statusOrder, {'attr': {'class': 'form-control'}}) }}
+</div>
+<button class="btn btn-lg btn-primary float-right">{{ button_label|default('Ajouter') }}</button>
+<div class="clearfix"></div>
+{{ form_end(form) }}

@@ -1,0 +1,10 @@
+<script>
+	var printWindow = document.getElementById('ticket').innerHTML;
+	var content = document.body.innerHTML;
+
+	document.body.innerHTML = printWindow;
+
+	window.print();
+
+	document.body.innerHTML = content;
+</script>

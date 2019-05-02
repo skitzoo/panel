@@ -1,0 +1,47 @@
+<div class="app-body">
+    {% if is_granted('IS_AUTHENTICATED_FULLY') or is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <div class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('Admin_Home') }}">
+                        <i class="nav-icon"></i> Tableau de bord
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('Admin_GetAllOrders', {'status': 'En attente de paiement'}) }}">Commandes</a>
+                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Customers_List', {'page' : 1}) }}">Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Booking_List', {'page' : 1}) }}">Réservations</a>
+                    </li>
+                    <li class="nav-dropdown nav-item">
+                        <a class="nav-dropdown-toggle nav-link" href="#">Configuration</a>
+                        <ul class="nav-dropdown-items">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('Admin_GetAllCategories', {'page': 1}) }}">Catégories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('Admin_GetAllProducts', {'page': 1}) }}">Produits</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('all_ingredient_index') }}">Ingredients</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Admin_GetStock', {'tab' : 'products'}) }}">Gestion du stock</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('Admin_GetAllUsers', {'page': 1}) }}">Gestion des accès</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}

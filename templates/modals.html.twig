@@ -1,0 +1,81 @@
+<div class="modal fade" id="" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" style="color:#FFF;" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body" style="display:flex;">
+                <div class="ModalError"></div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-success btn-lg text-white ModalConfirmChoice mt-0 mb-0" style="display:none;">Valider mon choix</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fade modal" id="orderDetails" role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Informations complémentaires</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form_orderDetails" method="POST">
+                    <label class="mr-sm-2" for="orderType">Type de commande</label>
+                    <select class="custom-select mb-2 mb-sm-0 mr-sm-2 orderDetails" id="orderType">
+                        <option selected>Choisir...</option>
+                        <option value="1">Téléphone</option>
+                        <option value="2">Uber</option>
+                    </select>
+                    <div class="d-none mt-2" id="OrderTel">
+                        <label class="mr-sm-2" for="orderSchedule">Horaire</label>
+                        <input class="form-control" id="orderSchedule" max="22:00" min="11:30" type="time">
+                    </div>
+                    <div class="d-none mt-2" id="OrderInternet">
+                        <label class="mr-sm-2" for="orderID">Numéro de commande</label>
+                        <input class="form-control" id="orderID">
+                    </div>
+
+                    <button class="btn btn-primary mt-2" disabled type="submit">Valider</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ModalBg"></div>
+<div class="ModalBox">
+    <div class="Soon flex-column" style="background: #E3CA67;min-height:600px;min-width:87%;max-height:40%;position:relative;display:none;max-width:87%;">
+        <div class="ModalTitle"><h2>Prochainement</h2></div>
+        <div class="ModalError"></div>
+        <div class="d-flex" style="align-items:center;justify-content:center;">
+            <div style="width:100%;overflow:hidden;">
+
+                <div class="row ModalContentData ml-4 mt-4">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="ModalDelete flex-column" style="background: #E3CA67;min-width:50%;max-height:40%;position:relative;display:none;max-width:50%;">
+        <div style="top:0;right:10px;position:absolute;"><a href="#" class="CloseModal"><i class="fa fa-close" style="font-size: 30px;padding-top: 7px;color: #81702d;"></i></a> </div>
+        <div class="DeleteTitle" style="font-size:22px;">Supression d'un produit</div>
+        <div class="DeleteContent p-3"><h5>Vous souhaitez retirer le produit <span class="modal-article-name font-weight-bold">x</span> de votre commande</h5></div>
+        <div class="DeleteChoice">
+            <a class="btn btn-primary text-white DeleteBtnOne">Supprimer un produit</a>
+            <!-- <a class="btn btn-danger text-white DeleteBtnAll">Supprimer les <span class="modal-article-number">0</span> produits</a>-->
+        </div>
+    </div>
+    <!--<div class="ModalChildMenu">
+        <div style="top:0;right:10px;position:absolute;"><a href="#" class="CloseModal"><i class="fa fa-close"></i></a> </div>
+        <div class="ChildMenuTitle">Supression d'un produit</div>
+        <div class="ChildMenuContent text-center p-4 m-4 d-flex"><h5>Vous souhaitez retirer le produit <span class="modal-article-name font-weight-bold">x</span> de votre commande</h5></div>
+        <div class="ChildMenuChoice text-center mb-4">
+            <a class="btn btn-primary text-white BtnMenuConfirm">Choisir</a>
+            <a class="btn btn-danger text-white DeleteBtnAll">Supprimer les <span class="modal-article-number">0</span> produits</a>
+        </div>
+    </div>-->
+</div>

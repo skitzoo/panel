@@ -1,0 +1,72 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Gestion de Stock</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Gestion de Stock ({{ products|length }})
+                        </div>
+
+                        <div class="card-body">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav_item">
+                                    <a aria-controls="Produits" class="active nav-link" href="{{ path('Admin_GetStock', {'tab': 'products'}) }}">Produits</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a aria-controls="Ingrédients" class="nav-link" href="{{ path('Admin_GetStock', {'tab': 'ingredients'}) }}">Ingrédients</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="waiting" role="tabpanel">
+                                    <div class="table-responsive-sm">
+                                        <table class="table table-hover table-striped">
+                                            <thead>
+                                            <tr class="bg-dark text-white">
+                                                <th>
+                                                    Catégorie
+                                                    <a href="{{ path('Admin_StockFilterByCatAsc') }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                                    <a href="{{ path('Admin_StockFilterByCatDesc') }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                                </th>
+                                                <th>
+                                                    Nom Produit
+                                                    <a href="{{ path('Admin_StockFilterByNameAsc') }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                                    <a href="{{ path('Admin_StockFilterByNameDesc') }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                                </th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for product in products %}
+                                                <tr>
+                                                    <td>{{ product.categorie }}</td>
+                                                    <td>{{ product.name }}</td>
+                                                    <td><a class="btn btn-outline-success {{ product.available ? 'disabled' : '' }}" href="{{ path('Admin_AddProductToStock', {'id': product.id}) }}" title="Mettre en stock"><i class="fa fa-plus"></i> Ajouter au stock</a></td>
+                                                    <td><a class="btn btn-outline-danger {{ product.available ? '' : 'disabled' }}" href="{{ path('Admin_RemoveProductToStock', {'id': product.id}) }}" title="Mettre en stock"><i class="fa fa-minus"></i> Enlever du stock</a></td>
+                                                </tr>
+
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="4">Aucun enregistrement trouvé</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

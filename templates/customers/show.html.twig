@@ -1,0 +1,71 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Consulter un client</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Détails du client {{ customer.email }}
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Customers_Edit', {'id': customer.id}) }}"><i class="fa fa-edit"></i> Editer</a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ customer.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>{{ customer.lastname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Prénom</th>
+                                        <td>{{ customer.firstname }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adresse</th>
+                                        <td>{{ customer.address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Code Postal</th>
+                                        <td>{{ customer.zipcode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ville</th>
+                                        <td>{{ customer.city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Mobile</th>
+                                        <td>{{ customer.mobile }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Anniversaire</th>
+                                        <td>{{ customer.birthday|date('d-m-Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Actif</th>
+                                        <td>{{ customer.isActive ? "Oui" : "Non" }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="btn-group-lg float-md-right">
+                                <a class="btn btn-info btn-lg" href="{{ path('Customers_List', {'page' : 1}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

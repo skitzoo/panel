@@ -1,0 +1,164 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Accueil</li>
+        <li class="active breadcrumb-item"><a href="#">Liste des produits</a></li>
+    </ol>
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="bg-light card-header">
+                            Liste des produits ({{ products|length }})
+                            <a class="btn btn-lg btn-outline-primary float-md-right" href="{{ path('Admin_AddProduct') }}"><i class="fa fa-plus"></i> Ajouter un produit</a>
+                        </div>
+
+                        {% if pagination.totalPages > 0 %}
+                            <ul class="justify-content-center pagination mt-2">
+                                {% if pagination.page == 1 %}
+                                    <li class="disabled page-item">
+                                        <a aria-label="Page précédente" class="page-link" href="#">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Page précédente</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a aria-label="Page précédente" class="page-link" href="{{ path('Admin_GetAllProducts', {'page': pagination.page-1}) }}">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Page précédente</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% for i in 1..pagination.totalPages %}
+                                    {% if i == pagination.page %}
+                                        <li class="disabled page-item">
+                                            <a class="page-link" href="#">{{ i }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ path(app.request.get('_route'), {'page' : i}) }}">{{ i }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% if pagination.totalPages == pagination.page %}
+                                    <li class="disabled page-item">
+                                        <a aria-label="Page suivante" class="page-link" href="#">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Page suivante</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a aria-label="Page suivante" class="page-link" href="{{ path(app.request.get('_route'), {'page': pagination.page+1}) }}">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Page suivante</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                        <div class="card-body">
+                            <div class="table-responsive-sm">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                    <tr class="bg-dark text-white">
+                                        <th></th>
+                                        <th>#</th>
+                                        <th>
+                                            Catégorie
+                                            <a href="{{ path('Admin_FilterByCatAsc', {'page' : app.request.attributes.get('_route_params')['page']}) }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                            <a href="{{ path('Admin_FilterByCatDesc', {'page' : app.request.attributes.get('_route_params')['page']}) }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                        </th>
+                                        <th>
+                                            Nom Produit
+                                            <a href="{{ path('Admin_FilterByNameAsc', {'page' : app.request.attributes.get('_route_params')['page']}) }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                            <a href="{{ path('Admin_FilterByNameDesc', {'page' : app.request.attributes.get('_route_params')['page']}) }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                        </th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% if products is not empty %}
+                                        {% for product in products %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ path('Admin_AscendProduct', {'id': product.id}) }}"><i aria-hidden="true" class="fa fa-caret-up"></i></a>
+                                                    <a href="{{ path('Admin_DescendProduct', {'id': product.id}) }}"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                                </td>
+                                                <td>{{ product.id }}</td>
+                                                <td>{{ product.categorie }}</td>
+                                                <td>{{ product.name }}</td>
+                                                <td><a href="{{ path('Admin_GetProductPerId', {'id': product.id}) }}"><i class="fa fa-eye"></i> Voir</a></td>
+                                                <td><a href="{{ path('Admin_EditProductPerId', {'id': product.id}) }}"><i class="fa fa-edit"></i> Editer</a></td>
+                                                <td>{% if is_granted('ROLE_ADMIN') %}<a class="delete" data-id="{{ product.id }}" data-type="product" href="#"><i class="fa fa-trash-alt"></i> Supprimer</a>{% else %} <a href="#" title="Vous n'êtes pas autorisé à supprimer un produit"><i class="fa fa-lock"></i> Verrouillé</a>{% endif %}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %}
+                                        <tr>
+                                            <td class="text-center" colspan="7">Aucun enregistrement trouvé</td>
+                                        </tr>
+                                    {% endif %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if pagination.totalPages > 0 %}
+                                <ul class="justify-content-center pagination">
+                                    {% if pagination.page == 1 %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="#">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page précédente" class="page-link" href="{{ path('Admin_GetAllProducts', {'page': pagination.page-1}) }}">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Page précédente</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in 1..pagination.totalPages %}
+                                        {% if i == pagination.page %}
+                                            <li class="disabled page-item">
+                                                <a class="page-link" href="#">{{ i }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item">
+                                                <a class="page-link" href="{{ path(app.request.get('_route'), {'page' : i}) }}">{{ i }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if pagination.totalPages == pagination.page %}
+                                        <li class="disabled page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="#">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a aria-label="Page suivante" class="page-link" href="{{ path(app.request.get('_route'), {'page': pagination.page+1}) }}">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Page suivante</span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
