@@ -46,12 +46,12 @@
                                             {% for ingredient in ingredients %}
                                                 <tr>
                                                     <td>
-                                                        {{ ingredient.type == 1 ? "Viande" }}
-                                                        {{ ingredient.type == 2 ? "Pain" }}
-                                                        {{ ingredient.type == 3 ? "Sauce" }}
-                                                        {{ ingredient.type == 5 ? "Supplément" }}
-                                                        {{ ingredient.type == 9 ? "Plat" }}
-                                                        {{ ingredient.type == 14 ? "Fromage" }}
+                                                        {{ ingredient.type === 1 ? "Viande" }}
+                                                        {{ ingredient.type === 2 ? "Pain" }}
+                                                        {{ ingredient.type === 3 ? "Sauce" }}
+                                                        {{ ingredient.type === 5 ? "Supplément" }}
+                                                        {{ ingredient.type === 9 ? "Plat" }}
+                                                        {{ ingredient.type === 14 ? "Fromage" }}
                                                     </td>
                                                     <td>{{ ingredient.name }}</td>
                                                     <td><a class="btn btn-outline-success {{ ingredient.available ? 'disabled' : '' }}" href="{{ path('Admin_AddIngredientToStock', {'id': ingredient.id}) }}" title="Mettre en stock"><i class="fa fa-plus"></i> Ajouter au stock</a></td>

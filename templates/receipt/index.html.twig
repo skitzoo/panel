@@ -2,13 +2,13 @@
     <div class="col-sm-6 offset-sm-3 d-none" id="ticket">
         <div class="row">
             <div class="col-sm-12">
-                {% if order.borneID == 0 %}
+                {% if order.borneID === 0 %}
                 <h2 style="text-align:center;">Internet {{ order.id }} ({{ order.bookingInfos.scheduleAt }})</h2>
                     <h3>{{ order.bookingInfos.customer.lastname }}</h3>
-                {% elseif order.borneID != 5 %}
+                {% elseif order.borneID !== 5 %}
                     <h2 style="text-align:center;">Borne {{ order.id }}</h2>
                 {% else %}
-                    <h2 style="text-align:center;">{{ order.type == false ? "Caisse #{order.id} (#{order.typevalue})" : "Uber (#{order.typevalue})" }}</h2>
+                    <h2 style="text-align:center;">{{ order.type === false ? "Caisse #{order.id} (#{order.typevalue})" : "Uber (#{order.typevalue})" }}</h2>
                 {% endif %}
                 <div class="col-5 table-responsive">
                     <table class="table w-100">
@@ -24,9 +24,9 @@
                                 <td style="text-align:left;width:70mm;">
                                     <p style="display:block;font-size:18px;font-weight:bold;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">{{ line.quantity }}x {{ line.product.categorie.name|capitalize }} - {{ line.product.name|capitalize }}</p>
                                     {% for row in line.CardAllLines %}
-                                        {% if row.type == 0 and row.active == false %}
+                                        {% if row.type === 0 and row.active === false %}
                                             <p style="display:block;font-size:16px;margin-left:15px;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">- (Sans) {{ row.Ingredient.name|capitalize }}</p>
-                                        {% elseif row.active == true and row.Ingredient.price > 0 %}
+                                        {% elseif row.active === true and row.Ingredient.price > 0 %}
                                             <p style="display:block;font-size:18px;margin-left:15px;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">- {{ row.Ingredient.name|capitalize }}</p>
                                         {% endif %}
                                     {% endfor %}
@@ -34,9 +34,9 @@
                                 <td style="text-align:left;width:10mm;">
                                     <p style="display:block;font-size:18px;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">{{ (line.product.type == 1) ? (line.quantity * line.product.price)|number_format(2, '.', ',') : line.TotalPrice|number_format(2, '.', ',') }}€</p>
                                     {% for row in line.CardAllLines %}
-                                        {% if row.type == 0 and row.active == false %}
+                                        {% if row.type === 0 and row.active === false %}
                                             <p style="display:block;font-size:16px;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">-</p>
-                                        {% elseif row.active == true and row.Ingredient.price > 0 %}
+                                        {% elseif row.active === true and row.Ingredient.price > 0 %}
                                             <p style="display:block;font-size:18px;margin-bottom:-9px;margin-top:10px;white-space:nowrap;">{{ row.Ingredient.price > 0 ? "#{row.Ingredient.price|number_format(2, '.', ',')}€" : '-' }}</p>
                                         {% endif %}
                                     {% endfor %}
@@ -47,10 +47,10 @@
                     </table>
                     <div class="col-5">
                         <div style="display:block;">
-                            {% if order.borneID != 0 and order.borneID != 5 %}
+                            {% if order.borneID !== 0 and order.borneID !== 5 %}
                                 <p>Heure d'arrivée : {{ order.startAt != null ? order.startAt|date('H:i') }}</p>
                             {% endif %}
-                            <p>{{ order.bookingInfos.comment != null ? "Commentaire : #{order.bookingInfos.comment}" }}</p>
+                            <p>{{ order.bookingInfos.comment !== null ? "Commentaire : #{order.bookingInfos.comment}" }}</p>
                         </div>
                         <div style="display:block;text-align:right;">
                             <h2>Total</h2><h3>{{ order.OrderTotal|number_format(2, '.', ',') }}€</h3>

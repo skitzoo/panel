@@ -58,13 +58,13 @@
                 </div>
             </div>
 
-            {% if product.type == constant('TYPE_COMPOSED', product)
-                or product.type == constant('TYPE_MENU', product)
-                or product.type == constant('TYPE_MEAT_ALONE', product)
-                or product.type == constant('TYPE_ONE_MEAT', product)
-                or product.type == constant('TYPE_TWO_MEAT', product)
-                or product.type == constant('TYPE_THREE_MEAT', product)
-                or product.type == constant('TYPE_FOUR_MEAT', product)
+            {% if product.type === constant('TYPE_COMPOSED', product)
+                or product.type === constant('TYPE_MENU', product)
+                or product.type === constant('TYPE_MEAT_ALONE', product)
+                or product.type === constant('TYPE_ONE_MEAT', product)
+                or product.type === constant('TYPE_TWO_MEAT', product)
+                or product.type === constant('TYPE_THREE_MEAT', product)
+                or product.type === constant('TYPE_FOUR_MEAT', product)
             %}
             <div class="row">
                 <div class="col-md-12">
@@ -103,20 +103,20 @@
                                             </td>
                                             <td>{{ ingredient.ingredient.name }}</td>
                                             <td>
-                                                {{ ingredient.ingredient.type == 0 ? "Ingrédient de base" }}
-                                                {{ ingredient.ingredient.type == 1 ? "Viande" }}
-                                                {{ ingredient.ingredient.type == 2 ? "Pain" }}
-                                                {{ ingredient.ingredient.type == 3 ? "Sauce" }}
-                                                {{ ingredient.ingredient.type == 4 ? "Cuisson" }}
-                                                {{ ingredient.ingredient.type == 5 ? "Supplément" }}
-                                                {{ ingredient.ingredient.type == 6 ? "Condiment" }}
-                                                {{ ingredient.ingredient.type == 7 ? "Boisson" }}
-                                                {{ ingredient.ingredient.type == 8 ? "Accompagnement" }}
-                                                {{ ingredient.ingredient.type == 9 ? "Plat" }}
-                                                {{ ingredient.ingredient.type == 10 ? "Dessert" }}
-                                                {{ ingredient.ingredient.type == 11 ? "Jouet" }}
-                                                {{ ingredient.ingredient.type == 12 ? "Non modifiable" }}
-                                                {{ ingredient.ingredient.type == 14 ? "Fromage" }}
+                                                {{ ingredient.ingredient.type === 0 ? "Ingrédient de base" }}
+                                                {{ ingredient.ingredient.type === 1 ? "Viande" }}
+                                                {{ ingredient.ingredient.type === 2 ? "Pain" }}
+                                                {{ ingredient.ingredient.type === 3 ? "Sauce" }}
+                                                {{ ingredient.ingredient.type === 4 ? "Cuisson" }}
+                                                {{ ingredient.ingredient.type === 5 ? "Supplément" }}
+                                                {{ ingredient.ingredient.type === 6 ? "Condiment" }}
+                                                {{ ingredient.ingredient.type === 7 ? "Boisson" }}
+                                                {{ ingredient.ingredient.type === 8 ? "Accompagnement" }}
+                                                {{ ingredient.ingredient.type === 9 ? "Plat" }}
+                                                {{ ingredient.ingredient.type === 10 ? "Dessert" }}
+                                                {{ ingredient.ingredient.type === 11 ? "Jouet" }}
+                                                {{ ingredient.ingredient.type === 12 ? "Non modifiable" }}
+                                                {{ ingredient.ingredient.type === 14 ? "Fromage" }}
                                             </td>
                                             <td width="150"><a href="{{ path('Admin_compositions_del', {'id': ingredient.id}) }}"><i class="fa fa-trash"></i> Supprimer</a></td>
                                         </tr>

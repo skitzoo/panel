@@ -38,20 +38,20 @@
                                                 </td>
                                                 <td>{{ all_ingredient.Name }}</td>
                                                 <td>
-                                                    {{ all_ingredient.type == 0 ? "Ingrédient de base" }}
-                                                    {{ all_ingredient.type == 1 ? "Viande" }}
-                                                    {{ all_ingredient.type == 2 ? "Pain" }}
-                                                    {{ all_ingredient.type == 3 ? "Sauce" }}
-                                                    {{ all_ingredient.type == 4 ? "Cuisson" }}
-                                                    {{ all_ingredient.type == 5 ? "Supplément" }}
-                                                    {{ all_ingredient.type == 6 ? "Condiment" }}
-                                                    {{ all_ingredient.type == 7 ? "Boisson" }}
-                                                    {{ all_ingredient.type == 8 ? "Accompagnement" }}
-                                                    {{ all_ingredient.type == 9 ? "Plat" }}
-                                                    {{ all_ingredient.type == 10 ? "Dessert" }}
-                                                    {{ all_ingredient.type == 11 ? "Jouet" }}
-                                                    {{ all_ingredient.type == 12 ? "Non modifiable" }}
-                                                    {{ all_ingredient.type == 14 ? "Fromage" }}
+                                                    {{ all_ingredient.type === 0 ? "Ingrédient de base" }}
+                                                    {{ all_ingredient.type === 1 ? "Viande" }}
+                                                    {{ all_ingredient.type === 2 ? "Pain" }}
+                                                    {{ all_ingredient.type === 3 ? "Sauce" }}
+                                                    {{ all_ingredient.type === 4 ? "Cuisson" }}
+                                                    {{ all_ingredient.type === 5 ? "Supplément" }}
+                                                    {{ all_ingredient.type === 6 ? "Condiment" }}
+                                                    {{ all_ingredient.type === 7 ? "Boisson" }}
+                                                    {{ all_ingredient.type === 8 ? "Accompagnement" }}
+                                                    {{ all_ingredient.type === 9 ? "Plat" }}
+                                                    {{ all_ingredient.type === 10 ? "Dessert" }}
+                                                    {{ all_ingredient.type === 11 ? "Jouet" }}
+                                                    {{ all_ingredient.type === 12 ? "Non modifiable" }}
+                                                    {{ all_ingredient.type === 14 ? "Fromage" }}
                                                 </td>
                                                 <td><a href="{{ path('all_ingredient_show', {'id': all_ingredient.id}) }}"><i class="fa fa-eye"></i> Voir</a></td>
                                                 <td><a href="{{ path('all_ingredient_edit', {'id': all_ingredient.id}) }}"><i class="fa fa-edit"></i> Editer</a></td>

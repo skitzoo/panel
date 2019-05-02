@@ -47,7 +47,7 @@
                             </div>
                             {% if pagination.totalPages > 0 %}
                                 <ul class="justify-content-center pagination">
-                                    {% if pagination.page == 1 %}
+                                    {% if pagination.page === 1 %}
                                         <li class="disabled page-item">
                                             <a aria-label="Page précédente" class="page-link" href="#">
                                                 <span aria-hidden="true">&laquo;</span>
@@ -64,7 +64,7 @@
                                     {% endif %}
 
                                     {% for i in 1..pagination.totalPages %}
-                                        {% if i == pagination.page %}
+                                        {% if i === pagination.page %}
                                             <li class="disabled page-item">
                                                 <a class="page-link" href="#">{{ i }}</a>
                                             </li>
@@ -75,7 +75,7 @@
                                         {% endif %}
                                     {% endfor %}
 
-                                    {% if pagination.totalPages == pagination.page %}
+                                    {% if pagination.totalPages === pagination.page %}
                                         <li class="disabled page-item">
                                             <a aria-label="Page suivante" class="page-link" href="#">
                                                 <span aria-hidden="true">&raquo;</span>

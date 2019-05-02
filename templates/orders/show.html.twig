@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="bg-light card-header">
-							{% if result.borneId == 0 %}Commande Internet-{{ result.id }}{% elseif result.borneId != 5 %}Commande Borne-{{ result.id }}{% else %}{{ result.type == false ? "Commande Caisse N°#{result.id} (#{result.typevalue})" : "Commande Uber (#{result.typevalue})" }}{% endif %}
+							{% if result.borneId === 0 %}Commande Internet-{{ result.id }}{% elseif result.borneId !== 5 %}Commande Borne-{{ result.id }}{% else %}{{ result.type === false ? "Commande Caisse N°#{result.id} (#{result.typevalue})" : "Commande Uber (#{result.typevalue})" }}{% endif %}
                             <div class="btn-group float-md-right">
                                 <a class="btn btn-lg btn-outline-primary" href="{{ path('Admin_GetAllOrders', {'status': result.status}) }}"><i class="fa fa-arrow-left"></i> Retour</a>
                             </div>
@@ -31,22 +31,22 @@
                                     </thead>
                                     <tbody>
                                     {% for row in items %}
-                                        {% if row.product != null %}
+                                        {% if row.product !== null %}
                                             <tr>
                                                 <td>{{ row.product ? "#{row.product.categorie.name} - #{row.product.name}" : 'Inconnu' }}
                                                     {% if row.CardAllLines|length > 0 %}
                                                         <small>(
                                                             {% for line in row.cardAllLines %}
                                                                 {% if line.active %}
-                                                                    {% if line.type == 0 %}
+                                                                    {% if line.type === 0 %}
                                                                         (Avec) {{ line.Ingredient.name }}
-                                                                    {% elseif line.type == 5 %}
+                                                                    {% elseif line.type === 5 %}
                                                                         (Supplément) {{ line.Ingredient.name }}
                                                                     {% else %}
                                                                         {{ line.Ingredient.name }}
                                                                     {% endif %}
                                                                 {% else %}
-                                                                    {% if line.type == 0 %}
+                                                                    {% if line.type === 0 %}
                                                                         (Sans) {{ line.Ingredient.name }}
                                                                     {% else %}
                                                                         {{ line.Ingredient.name }}
@@ -59,7 +59,7 @@
                                                     {% endif %}
                                                 </td>
 
-                                                {% if row.product.type == 14 %}
+                                                {% if row.product.type === 14 %}
                                                     <td class="text-sm-right">{{ row.product ? row.TotalPrice|number_format(2, '.', ',') : 'Inconnu' }}€</td>
                                                 {% else %}
                                                     <td class="text-sm-right">{{ row.product ? row.product.price|number_format(2, '.', ',') : 'Inconnu' }}€</td>
@@ -67,7 +67,7 @@
 
                                                 <td class="text-sm-center">{{ row.quantity }}</td>
 
-                                                {% if row.product.type == 14 %}
+                                                {% if row.product.type === 14 %}
                                                     <td class="text-sm-right">{{ row.product ? ((row.TotalPrice)|number_format(2, '.', ',')) : '0' }}€</td>
                                                 {% else %}
                                                     <td class="text-sm-right">{{ row.product ? ((row.quantity * row.product.price)|number_format(2, '.', ',')) : '0' }}€</td>
