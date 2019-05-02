@@ -158,18 +158,18 @@ class ProductGeneralController extends AbstractController
             $em->persist($product);
 
             // Ajout  automatique pour certaine categorie
-            if($product->getType() == Product::TYPE_COMPOSED ||
-                $product->getType() == Product::TYPE_MENU ||
-                $product->getType() == Product::TYPE_ONE_MEAT ||
-                $product->getType() == Product::TYPE_TWO_MEAT ||
-                $product->getType() == Product::TYPE_THREE_MEAT ||
-                $product->getType() == Product::TYPE_FOUR_MEAT)
+            if($product->getType() === Product::TYPE_COMPOSED ||
+                $product->getType() === Product::TYPE_MENU ||
+                $product->getType() === Product::TYPE_ONE_MEAT ||
+                $product->getType() === Product::TYPE_TWO_MEAT ||
+                $product->getType() === Product::TYPE_THREE_MEAT ||
+                $product->getType() === Product::TYPE_FOUR_MEAT)
             {
                 $ingredients = $allIngredientRepository->findAll();
 
                 foreach($ingredients as $ingredient)
                 {
-                    if ($ingredient->getType() == AllIngredient::TYPE_SAUCE or $ingredient->getType() == AllIngredient::TYPE_CUISSON or $ingredient->getType() == AllIngredient::TYPE_SUPPLEMENT or $ingredient->getType() == AllIngredient::TYPE_CONDIMENT)
+                    if ($ingredient->getType() === AllIngredient::TYPE_SAUCE or $ingredient->getType() === AllIngredient::TYPE_CUISSON or $ingredient->getType() === AllIngredient::TYPE_SUPPLEMENT or $ingredient->getType() === AllIngredient::TYPE_CONDIMENT)
                     {
                         $default = new AllIngredientInProduct();
                         $default->setProduct($product);
@@ -215,7 +215,7 @@ class ProductGeneralController extends AbstractController
         {
             $find = $allIngredientRepository->find($form->getData()['ingredient']);
 
-            if ($find != null)
+            if ($find !== null)
                 $ingredient->setIngredient($find);
 
             if (in_array($ingredient->getIngredient(), $ingredients))
@@ -281,7 +281,7 @@ class ProductGeneralController extends AbstractController
         $productRepository = $em->getRepository(Product::class);
         $product = $productRepository->find($id);
 
-        if($product != null)
+        if($product !== null)
         {
             $product->removeCardAll();
 
@@ -335,7 +335,7 @@ class ProductGeneralController extends AbstractController
     {
         $productFind = $productRepository->findOneBy(['ordre' => $product->getOrdre() + 1, 'type' => $product->getType()]);
 
-        if ($productFind != null)
+        if ($productFind !== null)
         {
             $productFind->setOrdre($product->getOrdre());
             $product->setOrdre($product->getOrdre() + 1);

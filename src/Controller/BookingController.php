@@ -77,7 +77,7 @@ class BookingController extends AbstractController
 
             $check = $bookingInfosRepository->findBy(['scheduleAt' => $scheduleAt]);
 
-            if ($check != null)
+            if ($check !== null)
                 $this->addFlash('danger', 'Cet horaire est déjà réservé');
             else {
                 $entityManager->persist($bookingInfos);
@@ -103,7 +103,7 @@ class BookingController extends AbstractController
     {
         $booking = $bookingInfosRepository->findOneBy(['id' => $id]);
 
-        if ($booking != null)
+        if ($booking !== null)
         {
             $entityManager->remove($booking);
             $entityManager->flush();

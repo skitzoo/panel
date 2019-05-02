@@ -69,7 +69,7 @@ class OrderController extends AbstractController
             $em->flush();
         }
 
-        if($orderId != null)
+        if($orderId !== null)
         {
             $items = $orderId->getCards();
             return $this->render('orders/show.html.twig', [
@@ -139,7 +139,7 @@ class OrderController extends AbstractController
         $ordersRepository = $em->getRepository(Card::class);
         $result = $ordersRepository->find($product_id);
 
-        if($result != null)
+        if($result !== null)
         {
             foreach($result->getCardAllLines() as $ingredient)
             {

@@ -64,7 +64,7 @@ class CustomerController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         $data = $form->getData();
 
-        if($data->getPlainPassword() != null)
+        if($data->getPlainPassword() !== null)
         {
             $password = $passwordEncoder->encodePassword($customer, $customer->getPlainPassword());
             $customer->setPassword($password);
@@ -89,7 +89,7 @@ class CustomerController extends AbstractController
      */
 	public function Customers_Delete(Customer $customer, EntityManagerInterface $em, Request $request)
     {
-        if ($customer == null)
+        if ($customer === null)
             return $this->redirectToRoute('Customers_List', ['page' => 1]);
 
         $em->remove($customer);

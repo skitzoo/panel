@@ -149,7 +149,7 @@ class CategorieController extends AbstractController
     {
         $categorieFind = $categorieRepository->findOneBy(['ordre' => $categorie->getOrdre() + 1]);
 
-        if ($categorieFind != null)
+        if ($categorieFind !== null)
         {
             $categorieFind->setOrdre($categorie->getOrdre());
             $categorie->setOrdre($categorie->getOrdre() + 1);
@@ -172,7 +172,7 @@ class CategorieController extends AbstractController
      */
     public function Admin_DeleteCategoriePerId($id, Categorie $categorie, EntityManagerInterface $em): Response
     {
-        if($categorie != null)
+        if($categorie !== null)
         {
             $em->remove($categorie);
             $em->flush();

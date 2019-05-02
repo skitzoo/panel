@@ -124,7 +124,7 @@ class AllIngredientController extends AbstractController
     {
         $ingredientFind = $allIngredientRepository->findOneBy(['ordre' => $allIngredient->getOrdre() + 1, 'Type' => $allIngredient->getType()]);
 
-        if ($ingredientFind != null)
+        if ($ingredientFind !== null)
         {
             $ingredientFind->setOrdre($allIngredient->getOrdre());
             $allIngredient->setOrdre($allIngredient->getOrdre() + 1);

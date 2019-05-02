@@ -31,9 +31,9 @@ class AjaxController extends AbstractController
         $product = $productRepository->find($idproduct);
 
 
-        if($product != null && $orderId != null)
+        if($product !== null && $orderId !== null)
         {
-            if($product->getType() == 2 || $product->getType() == 3)
+            if($product->getType() === 2 || $product->getType() === 3)
             {
                 $retour['composed'] = true;
                 $retour['status'] = true;
@@ -90,7 +90,7 @@ class AjaxController extends AbstractController
         $order = $orderRepository->find($orderid);
         $product = $productRepository->find($productid);
 
-        if($order != null && $product != null)
+        if($order !== null && $product !== null)
         {
             $retour['status'] = true;
 
@@ -114,7 +114,7 @@ class AjaxController extends AbstractController
         $retour = array();
         $order = $orderRepository->findOneBy(['status' => 'En cours de commande', 'borneID' => $borne]);
 
-        if ($order != null)
+        if ($order !== null)
         {
             $em->persist($order->setStatus('Commande annulée'));
             $em->flush();
