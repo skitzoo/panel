@@ -148,7 +148,7 @@ class Orders
 
             foreach ($row->getCardAllLines() as $line)
             {
-                if($line->getType() != AllIngredient::TYPE_REMOVE and $line->getType() != AllIngredient::TYPE_MEAT and $line->getType() != AllIngredient::TYPE_BREAD and $line->getType() != AllIngredient::TYPE_SAUCE and $line->getType() != AllIngredient::TYPE_CUISSON and $line->getType() != AllIngredient::TYPE_CONDIMENT and $line->getType() != AllIngredient::TYPE_UNCHANGEABLE)
+                if($line->getType() !== AllIngredient::TYPE_REMOVE and $line->getType() !== AllIngredient::TYPE_MEAT and $line->getType() !== AllIngredient::TYPE_BREAD and $line->getType() !== AllIngredient::TYPE_SAUCE and $line->getType() !== AllIngredient::TYPE_CUISSON and $line->getType() !== AllIngredient::TYPE_CONDIMENT and $line->getType() !== AllIngredient::TYPE_UNCHANGEABLE)
                     $total += $line->getIngredient()->getPrice();
             }
             $total += $row->getQuantity() * $row->getProduct()->getPrice();
@@ -170,7 +170,7 @@ class Orders
     {
         $find = true;
 
-        if (count($this->cards) == 0)
+        if (count($this->cards) === 0)
         {
             $find = false;
         }
