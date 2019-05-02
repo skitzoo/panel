@@ -9,7 +9,7 @@ class Upload
 
     public function Send($file, $directory)
     {
-        if($file == null)
+        if($file === null)
             return null;
 
         $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();

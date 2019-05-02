@@ -45,7 +45,7 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
         $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
         $paginator = new Paginator($query);
 
-        if (($paginator->count() <= $premierResultat) && $page != 1) {
+        if (($paginator->count() <= $premierResultat) && $page !== 1) {
             throw new NotFoundHttpException("La page demandée n'existe pas");
         }
 

@@ -44,39 +44,10 @@ class BookingInfosRepository extends ServiceEntityRepository
         $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
         $paginator = new Paginator($query);
 
-        if (($paginator->count() <= $premierResultat) && $page != 1) {
+        if (($paginator->count() <= $premierResultat) && $page !== 1) {
             throw new NotFoundHttpException("La page demandée n'existe pas");
         }
 
         return $paginator;
     }
-
-    // /**
-    //  * @return BookingInfos[] Returns an array of BookingInfos objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?BookingInfos
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

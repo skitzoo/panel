@@ -138,7 +138,7 @@ class AjaxController extends AbstractController
 
         foreach($items as $ingredient)
         {
-            if ($ingredient->getIngredient()->getType() == $type)
+            if ($ingredient->getIngredient()->getType() === $type)
                 $retour[] = array('id' => $ingredient->getIngredient()->getId(), 'name' => $ingredient->getIngredient()->getName(), 'picture' => $ingredient->getIngredient()->getPicture(), 'type' => $ingredient->getIngredient()->getType(), 'price' => $ingredient->getIngredient()->getPrice(), 'available' => $ingredient->getIngredient()->getAvailable());
         }
 

@@ -45,7 +45,7 @@ class ProductRepository extends ServiceEntityRepository
         $query->setFirstResult($premierResultat)->setMaxResults($nbMaxParPage);
         $paginator = new Paginator($query);
 
-        if (($paginator->count() <= $premierResultat) && $page != 1) {
+        if (($paginator->count() <= $premierResultat) && $page !== 1) {
             throw new NotFoundHttpException("La page demandée n'existe pas");
         }
 
@@ -142,7 +142,7 @@ class ProductRepository extends ServiceEntityRepository
         $paginator = new Paginator($query);
         $paginator->setUseOutputWalkers(false);
 
-        if (($paginator->count() <= $premierResultat) && $page != 1) {
+        if (($paginator->count() <= $premierResultat) && $page !== 1) {
             throw new NotFoundHttpException("La page demandée n'existe pas");
         }
 
@@ -187,7 +187,7 @@ class ProductRepository extends ServiceEntityRepository
         $paginator = new Paginator($query);
         $paginator->setUseOutputWalkers(false);
 
-        if (($paginator->count() <= $premierResultat) && $page != 1) {
+        if (($paginator->count() <= $premierResultat) && $page !== 1) {
             throw new NotFoundHttpException("La page demandée n'existe pas");
         }
 

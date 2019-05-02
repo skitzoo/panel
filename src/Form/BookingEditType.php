@@ -12,12 +12,6 @@ class BookingEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        /*$builder->add('customer', null, [
-            'attr' => [
-                'type' => 'text'
-            ],
-            'label' => 'Client'
-        ])*/
         $builder->add('scheduleAt', ChoiceType::class, [
             'choices' => $options['hours'],
             'choice_label' => function($value) {

@@ -18,33 +18,4 @@ class AllIngredientDefaultRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AllIngredientDefault::class);
     }
-
-//    /**
-//     * @return TacosIngredientDefault[] Returns an array of TacosIngredientDefault objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?TacosIngredientDefault
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
